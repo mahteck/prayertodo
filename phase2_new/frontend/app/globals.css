@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --salaat-black: #000000;
+  --salaat-orange: #FF6B35;
+  --salaat-white: #FFFFFF;
+  --card-background: #1A1A1A;
+  --border-color: #2A2A2A;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced dark theme scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1A1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF6B35;
+  border-radius: 6px;
+  border: 2px solid #1A1A1A;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF8C61;
+}
+
+@layer components {
+  /* Card component with dark theme */
+  .card-dark {
+    @apply bg-salaat-black-light border border-salaat-black-lighter rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply bg-salaat-orange hover:bg-salaat-orange-light active:bg-salaat-orange-dark text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply bg-transparent hover:bg-salaat-black-light text-salaat-orange font-semibold py-3 px-6 rounded-lg border-2 border-salaat-orange transition-all duration-200;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply bg-transparent hover:bg-salaat-black-light text-white font-medium py-2 px-4 rounded-lg border border-salaat-black-lighter transition-all duration-200;
+  }
+
+  /* Input field with dark theme */
+  .input-field {
+    @apply bg-salaat-black-light text-white border border-salaat-black-lighter rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-salaat-orange focus:border-transparent placeholder-gray-500 transition-all duration-200;
+  }
+
+  /* Select field */
+  .select-field {
+    @apply bg-salaat-black-light text-white border border-salaat-black-lighter rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-salaat-orange focus:border-transparent transition-all duration-200;
+  }
+
+  /* Textarea field */
+  .textarea-field {
+    @apply bg-salaat-black-light text-white border border-salaat-black-lighter rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-salaat-orange focus:border-transparent placeholder-gray-500 resize-y transition-all duration-200;
+  }
+
+  /* Label for forms */
+  .form-label {
+    @apply block text-white font-medium mb-2 text-sm;
+  }
+
+  /* Error message */
+  .error-message {
+    @apply text-red-400 text-sm mt-1;
+  }
+
+  /* Page gradient */
+  .page-gradient {
+    background: linear-gradient(135deg, #000000 0%, #1A1A1A 100%);
+  }
+
+  /* Orange gradient */
+  .orange-gradient {
+    background: linear-gradient(135deg, #FF6B35 0%, #E05A2C 100%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
