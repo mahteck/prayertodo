@@ -46,7 +46,7 @@ export default function TasksPage() {
   const fetchMasjids = async () => {
     try {
       const data = await api.getMasjids()
-      setMasjids(data)
+      setMasjids(data.masjids || [])
     } catch (err) {
       console.error('Error fetching masjids:', err)
     }

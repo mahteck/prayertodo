@@ -186,7 +186,7 @@ export default function TaskFiltersComponent({ filters, onFilterChange, masjids 
             <option value="">All Masjids</option>
             {Array.isArray(masjids) && masjids.map((masjid) => (
               <option key={masjid.id} value={masjid.id}>
-                {masjid.name} {masjid.area && `(${masjid.area})`}
+                {masjid.name} {masjid.area_name && `(${masjid.area_name})`}
               </option>
             ))}
           </select>

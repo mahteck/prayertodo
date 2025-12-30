@@ -19,7 +19,7 @@ export default function EditMasjidPage() {
 
   const [formData, setFormData] = useState<MasjidFormData>({
     name: '',
-    area: '',
+    area_name: '',
     city: '',
     address: '',
     imam_name: '',
@@ -47,7 +47,7 @@ export default function EditMasjidPage() {
       // Populate form
       setFormData({
         name: data.name || '',
-        area: data.area || '',
+        area_name: data.area_name || '',
         city: data.city || '',
         address: data.address || '',
         imam_name: data.imam_name || '',
@@ -74,7 +74,7 @@ export default function EditMasjidPage() {
       newErrors.name = 'Masjid name is required'
     }
 
-    if (!formData.area?.trim()) {
+    if (!formData.area_name?.trim()) {
       newErrors.area = 'Area is required'
     }
 
@@ -246,13 +246,13 @@ export default function EditMasjidPage() {
                     <input
                       id="area"
                       type="text"
-                      value={formData.area}
-                      onChange={(e) => handleChange('area', e.target.value)}
+                      value={formData.area_name}
+                      onChange={(e) => handleChange('area_name', e.target.value)}
                       className={`input-field w-full ${
-                        errors.area ? 'border-red-500 focus:ring-red-500' : ''
+                        errors.area_name ? 'border-red-500 focus:ring-red-500' : ''
                       }`}
                     />
-                    {errors.area && <p className="text-red-400 text-sm mt-1">{errors.area}</p>}
+                    {errors.area_name && <p className="text-red-400 text-sm mt-1">{errors.area_name}</p>}
                   </div>
 
                   <div>

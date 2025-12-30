@@ -43,7 +43,7 @@ export default function MasjidCard({ masjid, onClick }: MasjidCardProps) {
 
       {/* Location Info */}
       <div className="space-y-2 mb-4">
-        {(masjid.area || masjid.city) && (
+        {(masjid.area_name || masjid.city) && (
           <div className="flex items-center text-gray-300">
             <svg className="w-5 h-5 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
               <path
@@ -53,8 +53,8 @@ export default function MasjidCard({ masjid, onClick }: MasjidCardProps) {
               />
             </svg>
             <span>
-              {masjid.area && <span className="font-medium">{masjid.area}</span>}
-              {masjid.area && masjid.city && <span className="mx-1">•</span>}
+              {masjid.area_name && <span className="font-medium">{masjid.area_name}</span>}
+              {masjid.area_name && masjid.city && <span className="mx-1">•</span>}
               {masjid.city && <span>{masjid.city}</span>}
             </span>
           </div>

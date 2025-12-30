@@ -16,6 +16,7 @@ export default function Navbar() {
     { href: '/tasks' as Route, label: 'Tasks', icon: '✓' },
     { href: '/masjids' as Route, label: 'Masjids', icon: '🕌' },
     { href: '/hadith' as Route, label: 'Daily Hadith', icon: '📖' },
+    { href: '/chat' as Route, label: 'AI Assistant', icon: '🤖' },
   ]
 
   return (

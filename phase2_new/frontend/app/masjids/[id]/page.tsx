@@ -173,7 +173,7 @@ export default function MasjidDetailPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Location */}
-              {(masjid.area || masjid.city) && (
+              {(masjid.area_name || masjid.city) && (
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300 mb-2">Location</h3>
                   <div className="flex items-center text-gray-300">
@@ -189,8 +189,8 @@ export default function MasjidDetailPage() {
                       />
                     </svg>
                     <span>
-                      {masjid.area && <span className="font-medium">{masjid.area}</span>}
-                      {masjid.area && masjid.city && <span className="mx-1">•</span>}
+                      {masjid.area_name && <span className="font-medium">{masjid.area_name}</span>}
+                      {masjid.area_name && masjid.city && <span className="mx-1">•</span>}
                       {masjid.city && <span>{masjid.city}</span>}
                     </span>
                   </div>

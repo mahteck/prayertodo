@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, date
 from sqlmodel import Session, select
 
 from database import engine
-from models import Masjid, SpiritualTask, DailyHadith, TaskCategory, Priority, Recurrence
+from models import Masjid, SpiritualTask, DailyHadith, TaskCategory, Priority, Recurrence, LinkedPrayer
 
 
 def clear_existing_data():
@@ -15,9 +15,18 @@ def clear_existing_data():
     print("🗑️  Clearing existing data...")
     with Session(engine) as session:
         # Delete in order to respect foreign keys
-        session.query(SpiritualTask).delete()
-        session.query(DailyHadith).delete()
-        session.query(Masjid).delete()
+        tasks = session.exec(select(SpiritualTask)).all()
+        for task in tasks:
+            session.delete(task)
+
+        hadith_entries = session.exec(select(DailyHadith)).all()
+        for hadith in hadith_entries:
+            session.delete(hadith)
+
+        masjids = session.exec(select(Masjid)).all()
+        for masjid in masjids:
+            session.delete(masjid)
+
         session.commit()
     print("✅ Existing data cleared\n")
 
@@ -29,48 +38,83 @@ def seed_masjids():
     masjids_data = [
         {
             "name": "Masjid Al-Huda",
-            "area": "DHA Phase 5",
+            "area_name": "DHA Phase 5",
             "city": "Karachi",
             "address": "123 Main Street, DHA Phase 5, Karachi",
             "imam_name": "Sheikh Abdullah",
             "phone": "+92-300-1234567",
-            "facilities": "Prayer hall, Wudu area, Islamic library, Quran classes",
+            "fajr_time": "05:25",
+            "dhuhr_time": "12:55",
+            "asr_time": "16:25",
+            "maghrib_time": "18:10",
+            "isha_time": "19:40",
+            "jummah_time": "13:00",
+            "latitude": 24.8138,
+            "longitude": 67.0685,
         },
         {
             "name": "Masjid Al-Noor",
-            "area": "Gulshan-e-Iqbal",
+            "area_name": "Gulshan-e-Iqbal",
             "city": "Karachi",
             "address": "Block 13-D, Gulshan-e-Iqbal, Karachi",
             "imam_name": "Mufti Yusuf",
             "phone": "+92-300-2345678",
-            "facilities": "Prayer hall, Madrasah, Community center",
+            "fajr_time": "05:30",
+            "dhuhr_time": "13:00",
+            "asr_time": "16:30",
+            "maghrib_time": "18:15",
+            "isha_time": "19:45",
+            "jummah_time": "13:15",
+            "latitude": 24.9056,
+            "longitude": 67.0822,
         },
         {
             "name": "Masjid Al-Raheem",
-            "area": "Clifton",
+            "area_name": "Clifton",
             "city": "Karachi",
             "address": "Block 4, Clifton, Karachi",
             "imam_name": "Sheikh Ahmed",
             "phone": "+92-300-3456789",
-            "facilities": "Prayer hall, Parking, Women's section",
+            "fajr_time": "05:28",
+            "dhuhr_time": "12:58",
+            "asr_time": "16:28",
+            "maghrib_time": "18:13",
+            "isha_time": "19:43",
+            "jummah_time": "13:10",
+            "latitude": 24.8120,
+            "longitude": 67.0281,
         },
         {
             "name": "Masjid Al-Fattah",
-            "area": "Saddar",
+            "area_name": "Saddar",
             "city": "Karachi",
             "address": "Empress Market Road, Saddar, Karachi",
             "imam_name": "Maulana Ibrahim",
             "phone": "+92-300-4567890",
-            "facilities": "Prayer hall, Wudu area",
+            "fajr_time": "05:27",
+            "dhuhr_time": "12:57",
+            "asr_time": "16:27",
+            "maghrib_time": "18:12",
+            "isha_time": "19:42",
+            "jummah_time": "13:20",
+            "latitude": 24.8607,
+            "longitude": 67.0011,
         },
         {
             "name": "Masjid Al-Taqwa",
-            "area": "North Nazimabad",
+            "area_name": "North Nazimabad",
             "city": "Karachi",
             "address": "Block L, North Nazimabad, Karachi",
             "imam_name": "Sheikh Muhammad",
             "phone": "+92-300-5678901",
-            "facilities": "Prayer hall, Islamic school, Library",
+            "fajr_time": "05:32",
+            "dhuhr_time": "13:02",
+            "asr_time": "16:32",
+            "maghrib_time": "18:17",
+            "isha_time": "19:47",
+            "jummah_time": "13:30",
+            "latitude": 24.9326,
+            "longitude": 67.0366,
         },
     ]
 
@@ -106,6 +150,8 @@ def seed_tasks():
                 "masjid_id": masjids[0].id if masjids else None,
                 "due_datetime": tomorrow.replace(hour=5, minute=30),
                 "recurrence": Recurrence.DAILY,
+                "linked_prayer": LinkedPrayer.FAJR,
+                "minutes_before_prayer": 15,
             },
             {
                 "title": "Memorize Surah Al-Mulk",
@@ -130,6 +176,9 @@ def seed_tasks():
                 "masjid_id": masjids[1].id if len(masjids) > 1 else None,
                 "due_datetime": now.replace(hour=13, minute=0),
                 "recurrence": Recurrence.WEEKLY,
+                "linked_prayer": LinkedPrayer.JUMMAH,
+                "minutes_before_prayer": 30,
+                "recurrence_pattern": "every_friday",
             },
             {
                 "title": "Read Quran for 30 minutes",

@@ -28,10 +28,21 @@ class Settings(BaseSettings):
     # API
     api_v1_prefix: str = "/api/v1"
 
+    # Phase III - AI Chatbot Settings (Google Gemini)
+    gemini_api_key: str = "your-gemini-api-key"
+    backend_base_url: str = "http://localhost:8000"
+    chatbot_model: str = "gemini-1.5-flash"
+    chatbot_temperature: float = 0.7
+    chatbot_max_tokens: int = 1000
+    chatbot_timeout: int = 30
+    default_area: str = "North Nazimabad"
+    default_masjid_id: int = 1
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=False,
+        extra="allow",
     )
 
     @property

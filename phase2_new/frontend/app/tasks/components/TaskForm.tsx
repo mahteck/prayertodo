@@ -34,7 +34,7 @@ export default function TaskForm({ initialData, onSubmit, onCancel, isLoading = 
     const fetchMasjids = async () => {
       try {
         const data = await api.getMasjids()
-        setMasjids(data)
+        setMasjids(data.masjids || [])
       } catch (error) {
         console.error('Error fetching masjids:', error)
       } finally {
@@ -221,7 +221,7 @@ export default function TaskForm({ initialData, onSubmit, onCancel, isLoading = 
             <option value="">No masjid</option>
             {Array.isArray(masjids) && masjids.map((masjid) => (
               <option key={masjid.id} value={masjid.id}>
-                {masjid.name} {masjid.area && `(${masjid.area})`}
+                {masjid.name} {masjid.area_name && `(${masjid.area_name})`}
               </option>
             ))}
           </select>

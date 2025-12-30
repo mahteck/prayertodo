@@ -35,6 +35,16 @@ class Recurrence(str, Enum):
     MONTHLY = "Monthly"
 
 
+class LinkedPrayer(str, Enum):
+    """Prayer names for linking tasks to prayer times"""
+    FAJR = "Fajr"
+    DHUHR = "Dhuhr"
+    ASR = "Asr"
+    MAGHRIB = "Maghrib"
+    ISHA = "Isha"
+    JUMMAH = "Jummah"
+
+
 # Database Models
 class Masjid(SQLModel, table=True):
     """Masjid (Mosque) model for location-based tasks"""
@@ -86,6 +96,12 @@ class SpiritualTask(SQLModel, table=True):
     # Scheduling
     due_datetime: Optional[datetime] = Field(default=None)
     recurrence: Recurrence = Field(default=Recurrence.NONE)
+
+    # Phase III: Prayer-relative reminders and advanced scheduling
+    user_id: Optional[int] = Field(default=1, index=True)  # User ID for multi-user support
+    minutes_before_prayer: Optional[int] = Field(default=None)  # Minutes before prayer for reminders
+    linked_prayer: Optional[LinkedPrayer] = Field(default=None)  # Linked prayer name
+    recurrence_pattern: Optional[str] = Field(default=None, max_length=50)  # Detailed pattern (e.g., "every_day", "every_friday")
 
     # Status
     completed: bool = Field(default=False, index=True)

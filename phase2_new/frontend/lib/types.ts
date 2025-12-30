@@ -43,6 +43,7 @@ export interface Masjid {
   maghrib_time: string
   isha_time: string
   jummah_time?: string | null
+  facilities?: string | null
   created_at: string
   updated_at: string
 }

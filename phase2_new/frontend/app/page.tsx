@@ -148,7 +148,23 @@ export default function Home() {
             )}
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Link
+                href="/chat"
+                className="card-dark hover:border-salaat-orange transition-all group relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 bg-green-500 text-white text-xs px-2 py-1 rounded-bl-lg font-semibold">
+                  NEW
+                </div>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-white">AI Assistant</h3>
+                  <div className="w-10 h-10 bg-salaat-orange bg-opacity-20 rounded-full flex items-center justify-center group-hover:bg-opacity-100 transition-all">
+                    <span className="text-xl group-hover:scale-110 transition-transform">🤖</span>
+                  </div>
+                </div>
+                <p className="text-gray-300">Chat with AI for spiritual guidance</p>
+              </Link>
+
               <Link
                 href="/tasks/new"
                 className="card-dark hover:border-salaat-orange transition-all group"

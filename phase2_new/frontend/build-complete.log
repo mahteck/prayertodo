@@ -1,0 +1,43 @@
+
+> salaatflow-frontend@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · typedRoutes
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/10) ...
+   Generating static pages (2/10) 
+   Generating static pages (4/10) 
+   Generating static pages (7/10) 
+ ✓ Generating static pages (10/10)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    3.89 kB         128 kB
+├ ○ /_not-found                          873 B          88.2 kB
+├ ○ /chat                                45 kB           132 kB
+├ ○ /hadith                              3.57 kB         128 kB
+├ ○ /masjids                             3.59 kB         121 kB
+├ ƒ /masjids/[id]                        4.44 kB         129 kB
+├ ƒ /masjids/[id]/edit                   3.49 kB         121 kB
+├ ○ /masjids/new                         3.05 kB         120 kB
+├ ○ /tasks                               5.2 kB          121 kB
+├ ƒ /tasks/[id]                          3.93 kB         128 kB
+├ ƒ /tasks/[id]/edit                     1.64 kB         113 kB
+└ ○ /tasks/new                           1.42 kB         113 kB
++ First Load JS shared by all            87.3 kB
+  ├ chunks/117-8fbae0e175e112da.js       31.7 kB
+  ├ chunks/fd9d1056-8d0b54dc21c515a4.js  53.6 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
